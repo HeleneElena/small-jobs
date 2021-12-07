@@ -1,84 +1,67 @@
-.container {
-    margin-left: 400px;
-    margin-top: 100px;
+.calc {
+    width: 300px;
+    height: 500px;
+ /*   border: 1px solid black; */
+    border-radius: 20px;
+    background: #000;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: auto;
+    margin-top: 50px;
+    padding: 18px;
+    box-shadow: 4px 4px 4px #4f4f4f;
 }
-.text-center {
-    margin-bottom: 50px;
-    font-size: 50px;
+.calc-screen {
+    height: 125px;
+    padding: 10px;
+    display: grid;
+    justify-items: end;
+    align-items: end;
 }
-.card-wrapper {
-    width: 751px;
-    height: 381px;
-   /*  border: 1px solid gray; */
-   position: relative;
+.calc-screen p {
+    text-align: right;
+    font-size: 4rem;
+    margin-top: 30px;
+
 }
-.card-back, .card-front {
-    width: 535px;
-    height: 343px;
-    border: 1px solid gray;
-    border-radius: 15px;
-    position: absolute;
+.buttons {
+    display: grid;
+    grid-template-areas: 
+        "ac plus-minus percent division"
+        "seven eigth nine myltiply"
+        "four five six minus"
+        "one two three plus"
+        "zero zero dot equal";
+        grid-gap: 7px;
+        justify-items: center;
 }
-.card-back {
-    right: 0;
-    bottom: 0;
-    background: #F1F1F1;
-}
-.card-front {
-    background: white;
-    background: #012585;
-}
-.card-back-line {
-    width: 100%;
-    height: 80px;
-    background: #c0c0c0;
-    position: absolute;
-    top: 50px;
-}
-#cvv {
-    position: absolute;
-    right: 40px;
-    bottom: 112px;
-    width: 100px;
-    padding: 5px;
-    font-size: 40px;
+.btn {
+    width: 60px;
+    height: 60px;
+    background: #333;
+    border-radius: 50%;
     text-align: center;
+    line-height: 60px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+.btn.zero {
+    grid-area: zero;
+    width: 100%;
+    border-radius: 34px;
+}
+.btn:hover {
+    filter: brightness(150%);
+}
+.btn:active {
+    filter: brightness(90%);
 }
 
-.card-image {
-    height: 77px;
-    position: absolute;
-    left: 30px;
-    top: 35px;
+.btn.bg-orange {
+    background: #a6a6a6;
 }
-.card-logo {
-    height: 50px;
-    position: absolute;
-    bottom: 40px;
-    right: 30px;
-    color: white;
-}
-#card-number {
-    position: absolute;
-    width: 85%;
-    background: #f1f1f1;
-    margin: 0 5%;
-    font-size: 40px;
-    padding: 5px;
-    top: 145px;
-    outline: none;
-}
-#card-to-month, #card-to-year {
-    position: absolute;
-    font-size: 40px;
-    padding: 5px;
-    outline: none;
-    border: none;
-    width: 60px;
-    text-align: center;
-    bottom: 48px;
-    left: 5%;
-}
-#card-to-year {
-    left: 23%;
-}
+
+.btn.bg-grey {
+    background: #ff9501;
+} 
