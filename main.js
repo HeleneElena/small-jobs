@@ -16,7 +16,7 @@ sliderNext.addEventListener('click', () => {
 sliderPrev.addEventListener('click', () => {
     offset -= 510; // + ширина картинки
     if (offset < 0) {
-        offset = 1470;
+        offset = 1020;
     }
     sliderLine.style.left = -offset + 'px'; // работатет есть в CSS position: relative;
 });
