@@ -1,3 +1,11 @@
+.change-lang {
+      width: 86px;
+      height: 30px;
+      padding: 5px 35px 5px 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      margin-left: 1000px;
+}
 .container {
     background: #f1f1f1;
     max-width: 1200px;
@@ -20,16 +28,23 @@
 }
 .button {
     background: none;
-    border: 1px solid black;
     border-radius: 4px;
     padding: 10px 20px;
     font-size: .9rem;
+    margin: auto;
 }
-
+.slider-prev {
+    margin-left: 530px;
+}
 .button:hover {
     background: orange;
 }
 .button:active {
     background: black;
     color: blanchedalmond;
+}
+.content {
+    margin: auto;
+    margin-top: 100px;
+    max-width: 500px;
 }
