@@ -1,31 +1,67 @@
-const dino = document.querySelector('.dino'),
-      cactus = document.querySelector('.cactus');
+let addMessage = document.querySelector('.message'),
+    addButton = document.querySelector('.add'),
+    todo = document.querySelector('.todo');
 
-      console.log(dino);
+    let todoList = [];
 
-document.addEventListener('keydown', function(event) {
-    jump();
-});
-
-function jump() {
-   if (dino.classList != 'jump') {
-        dino.classList.add('jump');
-   }
-   setTimeout(function() {
-        dino.classList.remove('jump');
-   }, 300);
-}
-
-let isAlive = setInterval(() => {
-    let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue('top'));
-    let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
-
-    if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 140) {
-        alert('GAME OVER!!!')
+    if(localStorage.getItem('todo')) {
+        todoList = JSON.parse(localStorage.getItem('todo'));
+        displayMessages();
     }
 
-}, 10);
+addButton.addEventListener('click', function() {
+    if(!addMessage.value) return;
+    let newTodo = {
+        todo: addMessage.value,
+        checked: false,
+        impotant: false
+    };
+    todoList.push(newTodo);
+    displayMessages();
+    localStorage.setItem('todo', JSON.stringify(todoList));
+    addMessage.value = '';
+});
 
+function displayMessages() {
+    let displayMessage = '';
+    if (todoList.length === 0) todo.innerHTML = '';
+    todoList.forEach( function(item, index) {
+        displayMessage += `
+        <li>
+            <input type='checkbox' id='item_${index}' ${item.checked ? 'checked' : ''}>
+            <label for='item_${index}' class="${item.impotant ? 'impotant' : ''}">${item.todo}</label>
+        </li>
+        `;
+        todo.innerHTML = displayMessage;
+    });
+}
+
+todo.addEventListener('change', function(event) {
+    let idInput = event.target.getAttribute('id');
+    let valueLabel = todo.querySelector('[for=' + idInput + ']').innerHTML;
+    
+    todoList.forEach( function(item) {
+        if (item.todo === valueLabel) {
+            item.checked = !item.checked;
+            localStorage.setItem('todo', JSON.stringify(todoList));
+        }
+    });
+});
+
+todo.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+    todoList.forEach( function(item, i) {
+        if (item.todo === event.target.innerHTML) {
+            if (event.ctrlKey || event.metaKey) {
+                todoList.splice(i, 1);
+            } else {
+                item.impotant = !item.impotant;
+            }
+            displayMessages();
+            localStorage.setItem('todo', JSON.stringify(todoList));
+        }
+    });
+});
 
 
 
